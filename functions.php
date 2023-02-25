@@ -12,27 +12,28 @@ function produccionTotal($capacidadMaxima, $vacas){
         
     }
     rsort($vacasFormat); 
-    var_dump($vacasFormat);
+    // var_dump($vacasFormat);
 
     for ($i=0; $i < count($vacasFormat) ; $i++) { 
         $maxima = $maxima + $vacasFormat[$i]->peso;
         if ($maxima <= $capacidadMaxima){
                 $Totalproduccion = $Totalproduccion + $vacasFormat[$i]->produccion;
                 $cantidad= $cantidad + 1;  
-                echo "\nsi paso por la primera en index\n" .$i;
+                // echo "\nsi paso por la primera en index\n" .$i;
         }else if(($capacidadMaxima - ($maxima - $vacasFormat[$i]->peso)) < 
-                 ($capacidadMaxima - ($maxima - $vacasFormat[$i-1]->peso)) )
+                 ($capacidadMaxima - ($maxima - $vacasFormat[$i-1]->peso)) &&
+                 $vacasFormat[$i]->produccion > $vacasFormat[$i-1]->produccion )
         {
             $maxima = $maxima - $vacasFormat[$i-1]->peso;
             $Totalproduccion = ($Totalproduccion + $vacasFormat[$i]->produccion) - $vacasFormat[$i-1]->produccion; 
-            echo "\nsi paso en index\n" .$i;
+            // echo "\nsi paso en index\n" .$i;
         }else{
             if($vacasFormat[$i]->produccion > $Totalproduccion && $vacasFormat[$i]->peso <= $capacidadMaxima ){
                 $Totalproduccion = $vacasFormat[$i]->produccion;
-                echo "\nsi paso mayor if en index\n" .$i;
+                // echo "\nsi paso mayor if en index\n" .$i;
             }else{
                 $maxima = $maxima - $vacasFormat[$i]->peso;
-                echo "\nsi paso mayor else en index\n" .$i;
+                // echo "\nsi paso mayor else en index\n" .$i;
             }
         }
     }
