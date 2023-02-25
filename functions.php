@@ -8,7 +8,7 @@ function produccionTotal($capacidadMaxima, $vacas){
     //formateamos los datos de vacas
     foreach ($vacas as &$key) {
         $keyx  = explode(",", $key);
-        array_push($vacasFormat, new Vaca(intval(trim($keyx[0])), intval(trim($keyx[1])))); // el usuario de vacas pasa a ser $vacasFormat 
+        array_push($vacasFormat, new Vaca(intval(trim($keyx[1])), intval(trim($keyx[0])))); // el usuario de vacas pasa a ser $vacasFormat 
         
     }
     rsort($vacasFormat); 
@@ -21,7 +21,7 @@ function produccionTotal($capacidadMaxima, $vacas){
                 $cantidad= $cantidad + 1;  
                 echo "\nsi paso por la primera en index\n" .$i;
         }else if(($capacidadMaxima - ($maxima - $vacasFormat[$i]->peso)) < 
-                 ($capacidadMaxima - ($maxima - $vacasFormat[$i-1]->peso)))
+                 ($capacidadMaxima - ($maxima - $vacasFormat[$i-1]->peso)) )
         {
             $maxima = $maxima - $vacasFormat[$i-1]->peso;
             $Totalproduccion = ($Totalproduccion + $vacasFormat[$i]->produccion) - $vacasFormat[$i-1]->produccion; 
@@ -38,6 +38,6 @@ function produccionTotal($capacidadMaxima, $vacas){
     }
         
     
-    echo "\nPeso total".$maxima."Seleccionamos ".$cantidad." vaca(s)\nsu produccion total es de:".$Totalproduccion;
+    echo "\nPeso total ".$maxima."kg Seleccionamos ".$cantidad." vaca(s)\nsu produccion total es de:".$Totalproduccion;
 }
 ?>

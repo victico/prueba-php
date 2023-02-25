@@ -1,13 +1,14 @@
 <?php
 class Vaca
 {
-    public int $peso;
     public int $produccion;
+    public int $peso;
+    
 
-    public function __construct(int $peso, int $produccion,)
+    public function __construct(int $produccion, int $peso)
     {
-        $this->peso = $peso;
         $this->produccion = $produccion;
+        $this->peso = $peso;
     }
 }
 ?>
